@@ -11,12 +11,14 @@ OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
 client = OpenAI()
 
+question = input("User: ")
+
 try:
      response = client.chat.completions.create(
           model="gpt-3.5-turbo",
           max_tokens=50,
           temperature=0,
-          messages=[{"role": "user", "content": "hello"}],
+          messages=[{"role": "user", "content": question}],
      )
      
 except openai.RateLimitError as e:
@@ -34,5 +36,6 @@ except Exception as e:
 
      for choice in response.choices:
           
-           print(choice.message.content)
+           print("AI: {choice.message.content}")
            
+
