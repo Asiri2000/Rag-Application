@@ -18,7 +18,7 @@ try:
           temperature=0,
           messages=[{"role": "user", "content": "hello"}],
      )
-     print(response)
+     
 except openai.RateLimitError as e:
      print(
           "OpenAI API returned 429 'insufficient_quota'. "
@@ -30,3 +30,9 @@ except openai.RateLimitError as e:
 except Exception as e:
      print(f"OpenAI API error: {e}", flush=True)
      sys.exit(1)
+
+
+     for choice in response.choices:
+          
+           print(choice.message.content)
+           
